@@ -4,6 +4,7 @@ const config = require('config');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
+
 // Bring in normalize to give us a proper url, regardless of what user entered.
 const normalize = require('normalize-url');
 
@@ -63,6 +64,7 @@ router.post(
       linkedin,
       facebook,
     } = req.body;
+
     // Build profile object
     const profileFields = {
       user: req.user.id,
@@ -214,7 +216,6 @@ router.put(
 // @route    DELETE api/profile/experience/:exp_id
 // @desc     Delete experience from profile
 // @access   Private
-
 router.delete('/experience/:exp_id', auth, async (req, res) => {
   try {
     const foundProfile = await Profile.findOne({ user: req.user.id });
@@ -292,7 +293,6 @@ router.put(
 // @route    DELETE api/profile/education/:edu_id
 // @desc     Delete education from profile
 // @access   Private
-
 router.delete('/education/:edu_id', auth, async (req, res) => {
   try {
     const foundProfile = await Profile.findOne({ user: req.user.id });
