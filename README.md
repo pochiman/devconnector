@@ -1,9 +1,9 @@
 # DevConnector
 
-> Social network for developers
-> [https://afternoon-castle-06020.herokuapp.com/](https://afternoon-castle-06020.herokuapp.com/)
+> [Demo](https://afternoon-castle-06020.herokuapp.com/)
 
-This is a MERN stack application in the form of a small social network app that includes authentication, profiles and forum posts.
+This is a MERN stack application in the form of a small social network app for developers.
+It includes authentication, profiles and forum posts.
 
 ---
 

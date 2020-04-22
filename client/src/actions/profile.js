@@ -13,7 +13,7 @@ import {
 } from './types';
 
 // Get current user's profile
-export const getCurrentProfile = () => async (dispatch) => {
+export const getCurrentProfile = () => async dispatch => {
   try {
     const res = await axios.get('/api/profile/me');
 
@@ -30,7 +30,7 @@ export const getCurrentProfile = () => async (dispatch) => {
 };
 
 // Get all profiles
-export const getProfiles = () => async (dispatch) => {
+export const getProfiles = () => async dispatch => {
   dispatch({ type: CLEAR_PROFILE });
 
   try {
@@ -49,7 +49,7 @@ export const getProfiles = () => async (dispatch) => {
 };
 
 // Get profile by ID
-export const getProfileById = (userId) => async (dispatch) => {
+export const getProfileById = userId => async dispatch => {
   try {
     const res = await axios.get(`/api/profile/user/${userId}`);
 
@@ -66,7 +66,7 @@ export const getProfileById = (userId) => async (dispatch) => {
 };
 
 // Get Github repos
-export const getGithubRepos = (username) => async (dispatch) => {
+export const getGithubRepos = username => async dispatch => {
   try {
     const res = await axios.get(`/api/profile/github/${username}`);
 
@@ -82,9 +82,11 @@ export const getGithubRepos = (username) => async (dispatch) => {
 };
 
 // Create or update profile
-export const createProfile = (formData, history, edit = false) => async (
-  dispatch
-) => {
+export const createProfile = (
+  formData,
+  history,
+  edit = false
+) => async dispatch => {
   try {
     const config = {
       headers: {
@@ -108,7 +110,7 @@ export const createProfile = (formData, history, edit = false) => async (
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
     }
 
     dispatch({
@@ -119,7 +121,7 @@ export const createProfile = (formData, history, edit = false) => async (
 };
 
 // Add Experience
-export const addExperience = (formData, history) => async (dispatch) => {
+export const addExperience = (formData, history) => async dispatch => {
   try {
     const config = {
       headers: {
@@ -141,7 +143,7 @@ export const addExperience = (formData, history) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
     }
 
     dispatch({
@@ -152,7 +154,7 @@ export const addExperience = (formData, history) => async (dispatch) => {
 };
 
 // Add Education
-export const addEducation = (formData, history) => async (dispatch) => {
+export const addEducation = (formData, history) => async dispatch => {
   try {
     const config = {
       headers: {
@@ -174,7 +176,7 @@ export const addEducation = (formData, history) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
     }
 
     dispatch({
@@ -185,7 +187,7 @@ export const addEducation = (formData, history) => async (dispatch) => {
 };
 
 // Delete experience
-export const deleteExperience = (id) => async (dispatch) => {
+export const deleteExperience = id => async dispatch => {
   try {
     const res = await axios.delete(`/api/profile/experience/${id}`);
 
@@ -204,7 +206,7 @@ export const deleteExperience = (id) => async (dispatch) => {
 };
 
 // Delete education
-export const deleteEducation = (id) => async (dispatch) => {
+export const deleteEducation = id => async dispatch => {
   try {
     const res = await axios.delete(`/api/profile/education/${id}`);
 
@@ -223,7 +225,7 @@ export const deleteEducation = (id) => async (dispatch) => {
 };
 
 // Delete account and profile
-export const deleteAccount = () => async (dispatch) => {
+export const deleteAccount = () => async dispatch => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     try {
       await axios.delete('/api/profile');

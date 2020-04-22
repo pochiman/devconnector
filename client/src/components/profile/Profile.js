@@ -10,19 +10,20 @@ import ProfileEducation from './ProfileEducation';
 import ProfileGithub from './ProfileGithub';
 import { getProfileById } from '../../actions/profile';
 
-const Profile = ({
-  getProfileById,
-  profile: { profile, loading },
-  auth,
-  match,
-}) => {
+const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
+  /*
+   use a nullProfile boolean to safely add to useEffect
+   adding profile to useEffect would trigger the function
+   as profile is an object and object's are reference types
+*/
+  const nullProfile = !profile;
   useEffect(() => {
     getProfileById(match.params.id);
-  }, [getProfileById, match.params.id]);
+  }, [getProfileById, match.params.id, nullProfile]);
 
   return (
     <Fragment>
-      {profile === null || loading ? (
+      {profile === null ? (
         <Spinner />
       ) : (
         <Fragment>
@@ -36,14 +37,14 @@ const Profile = ({
                 Edit Profile
               </Link>
             )}
-          <div class='profile-grid my-1'>
+          <div className='profile-grid my-1'>
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
             <div className='profile-exp bg-white p-2'>
               <h2 className='text-primary'>Experience</h2>
               {profile.experience.length > 0 ? (
                 <Fragment>
-                  {profile.experience.map((experience) => (
+                  {profile.experience.map(experience => (
                     <ProfileExperience
                       key={experience._id}
                       experience={experience}
@@ -59,7 +60,7 @@ const Profile = ({
               <h2 className='text-primary'>Education</h2>
               {profile.education.length > 0 ? (
                 <Fragment>
-                  {profile.education.map((education) => (
+                  {profile.education.map(education => (
                     <ProfileEducation
                       key={education._id}
                       education={education}
@@ -84,12 +85,12 @@ const Profile = ({
 Profile.propTypes = {
   getProfileById: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   profile: state.profile,
-  auth: state.auth,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { getProfileById })(Profile);
