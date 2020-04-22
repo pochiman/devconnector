@@ -1,7 +1,7 @@
 # DevConnector
 
 > Social network for developers
-> https://afternoon-castle-06020.herokuapp.com
+> [https://afternoon-castle-06020.herokuapp.com/](https://afternoon-castle-06020.herokuapp.com/)
 
 This is a MERN stack application in the form of a small social network app that includes authentication, profiles and forum posts.
 
@@ -59,7 +59,7 @@ If you were able to securely include `config/default.json` `and config/productio
 However, Heroku needs these files for a successful build.  
 So how to get them to Heroku without commiting them to GitHub?
 
-What I suggest you do is create a local only branch, lets call it _production_.
+What I suggest you do is create a local only branch, let's call it _production_.
 
 ```bash
 git checkout -b production
